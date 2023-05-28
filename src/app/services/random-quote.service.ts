@@ -10,9 +10,9 @@ export class RandomQuoteService {
   constructor() {}
 
   /**
-   * get a random quote from api
+   * Retrieves a random quote from the API.
    *
-   * @returns a random quote
+   * @returns A Promise that resolves to a random quote object.
    */
   async getRandomQuote(): Promise<Quote> {
     let quotes: Quote[] = [];

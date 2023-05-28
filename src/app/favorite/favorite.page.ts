@@ -7,10 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./favorite.page.scss'],
 })
 export class FavoritePage {
+  constructor(public photoService: PhotoService) {}
 
-  constructor(public photoService: PhotoService) { }
-
+  /**
+   * Toggles the favorite status of a photo.
+   *
+   * @param photo The photo object to be toggled.
+   */
   async toggleFavorite(photo: Photo) {
-    await this.photoService.makeFavorite(photo)
+    await this.photoService.makeFavorite(photo);
   }
 }

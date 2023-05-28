@@ -6,17 +6,41 @@ import { Storage } from '@ionic/storage-angular';
   providedIn: 'root',
 })
 export class StorageService {
-  constructor(private storage: Storage) {}
+  /**
+   * Constructs an instance of the class.
+   *
+   * @param storage The storage object used for data storage.
+   */
+  constructor(private storage: Storage) {
+    this.storage.create();
+  }
 
+  /**
+   * Saves data in the storage with the specified key-value pair.
+   *
+   * @param key The key used to store the data.
+   * @param value The data to be stored.
+   */
   async saveData(key: string, value: any): Promise<void> {
     await this.storage.set(key, value);
   }
 
+  /**
+   * Retrieves the data from the storage based on the specified key.
+   *
+   * @param key The key used to retrieve the data.
+   * @returns A Promise that resolves to the retrieved data.
+   */
   async getData(key: string): Promise<any> {
     return await this.storage.get(key);
   }
 
-  public async delete(key: string){
+  /**
+   * Deletes the data from the storage based on the specified key.
+   *
+   * @param key The key used to delete the data.
+   */
+  public async delete(key: string) {
     return await this.storage.remove(key);
   }
 }

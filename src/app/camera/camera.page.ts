@@ -16,6 +16,10 @@ export class CameraPage {
 
   constructor(public photoService: PhotoService) {}
 
+  /**
+   * Lifecycle hook that is called when the page is about to enter and become the active page.
+   * Starts the camera preview and initializes it with the specified options.
+   */
   async ionViewWillEnter() {
     const cameraPreviewOptions: CameraPreviewOptions = {
       x: 0,
@@ -32,21 +36,33 @@ export class CameraPage {
     });
   }
 
+  /**
+   * Lifecycle hook that is called when the page is about to leave and no longer be the active page.
+   * Stops the camera preview.
+   */
   async ionViewDidLeave() {
     await CameraPreview.stop().then(() => {
       this.started = false;
     });
   }
 
+  /**
+   * Captures a photo using the camera preview and saves it using the photo service.
+   */
   async capture() {
     const cameraPreviewPictureOptions: CameraPreviewPictureOptions = {
       quality: 100,
     };
     const result = await CameraPreview.capture(cameraPreviewPictureOptions);
     const base64PictureData = result.value;
-    await this.photoService.save(base64PictureData, "a photo");
+    await this.photoService.save(base64PictureData, '');
   }
 
+  /**
+   * Flips the camera between front and rear-facing.
+   * Prints a success message if the camera is flipped successfully,
+   * or prints an error message if there was an error flipping the camera.
+   */
   flipCamera() {
     CameraPreview.flip().then(
       () => {

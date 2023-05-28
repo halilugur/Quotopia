@@ -9,7 +9,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { Drivers } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],

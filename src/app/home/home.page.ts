@@ -10,6 +10,11 @@ import { Quote } from '../models/Quote';
 export class HomePage {
   public quote: Quote | undefined;
 
+  /**
+   * Constructs an instance of the class.
+   *
+   * @param quoteService The quote service used to retrieve random quotes.
+   */
   constructor(private quoteService: RandomQuoteService) {
     this.quoteService.getRandomQuote().then((quote) => {
       this.quote = quote;

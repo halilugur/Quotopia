@@ -36,13 +36,21 @@
       <ion-content class="ion-padding">
         <ion-item>
           <ion-textarea
-            placeholder="Type something here"
+            placeholder="Type photo description"
             [autoGrow]="true"
             [(ngModel)]="description"
           >
           </ion-textarea>
         </ion-item>
-        <ion-card style="position: absolute; right: 0; bottom: 0; background-color: transparent;">
+        <br>
+        <ion-item>
+          <ion-input
+            placeholder="Where did you take this photo?"
+            [(ngModel)]="address"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-card class="update-button">
           <ion-button (click)="updatePhoto()">
             <ion-icon slot="icon-only" name="save"></ion-icon>
           </ion-button>
