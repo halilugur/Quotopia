@@ -1,4 +1,6 @@
+import { RandomQuoteService } from './../services/random-quote.service';
 import { Component } from '@angular/core';
+import { Quote } from '../models/Quote';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
+  public quote: Quote | undefined;
 
-  constructor() { }
-
+  constructor(private quoteService: RandomQuoteService) {
+    this.quoteService.getRandomQuote().then((quote) => {
+      this.quote = quote;
+    });
+  }
 }

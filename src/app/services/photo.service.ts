@@ -1,85 +1,61 @@
+import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
-import {
-  Camera,
-  CameraResultType,
-  CameraSource,
-  Photo,
-} from '@capacitor/camera';
-import { Filesystem, Directory } from '@capacitor/filesystem';
-import { Platform } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PhotoService {
-  public photos: UserPhoto[] = [];
-  private photo_storage = 'photos';
-  private platform: Platform;
+  photos: Photo[] = [];
 
-  constructor(platform: Platform) {
-    this.platform = platform;
+  constructor(
+    private storage: Storage,
+    private storageService: StorageService
+  ) {
+    this.storage.create();
   }
 
-  private async convertBase64(photo: Photo) {
-    if (photo.webPath) {
-      const res = await fetch(photo.webPath);
-      const blob = await res.blob();
-
-      return (await this.convertBlobTo64(blob)) as string;
-    }
-    return null;
+  async save(base64data: string, description: string): Promise<any> {
+    const photo = {
+      id: `photo_${new Date().getTime()}`,
+      data: `data:image/png;base64,${base64data}`,
+      description,
+    };
+    await this.storageService.saveData(`photo_${new Date().getTime()}`, photo);
+    this.photos.unshift(photo);
   }
 
-  private convertBlobTo64(blob: Blob) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onerror = reject;
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-      reader.readAsDataURL(blob);
-    });
+  async updatePhoto(photo: Photo): Promise<any> {
+    await this.storageService.saveData(photo.id, photo);
   }
 
-  private async saveToDevice(photo: Photo) {
-    // 1000001 = a
-    // rgb alpha (transparency)
-    // cmyk
-
-    const base64data = await this.convertBase64(photo);
-    if (base64data) {
-      const filename = `Picture taken at ${new Date().getTime()}.jpeg`;
-      const savedFile = await Filesystem.writeFile({
-        path: filename,
-        data: base64data,
-        directory: Directory.Data,
-      });
-      console.log(filename);
-      console.log(savedFile);
-
-      return {
-        filepath: filename,
-        webviewPath: photo.webPath,
-      };
-    }
+  public async readAllPhoto(): Promise<Photo[]> {
+    await this.storage.forEach((photo, key, i) => {
+      if (key.startsWith('photo')) {
+        this.photos.unshift(photo);
+      }
+    })
+    return this.photos;
   }
 
-  async takePhoto() {
-    const photo = await Camera.getPhoto({
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Camera,
-      quality: 100,
-    });
-    this.photos.unshift({
-      filepath: 'tbd',
-      webviewPath: photo.webPath,
-    });
-    console.log(this.photos.length);
-    this.saveToDevice(photo);
+  async makeFavorite(photo: Photo): Promise<any> {
+    photo.isFavorite = !photo.isFavorite;
+    await this.storageService.saveData(photo.id, photo);
+  }
+
+  public readAllFavoritePhoto(): Photo[] {
+    return this.photos.filter(({ isFavorite }) => isFavorite);    
+  }
+
+  public async getRandomPhoto(): Promise<Photo> {
+    const randomIndex = Math.floor(Math.random() * this.photos.length);
+    return this.photos[randomIndex];
   }
 }
 
-export interface UserPhoto {
-  filepath: string;
-  webviewPath?: string;
+export interface Photo {
+  id: string;
+  data: string;
+  description: string;
+  isFavorite?: boolean
 }

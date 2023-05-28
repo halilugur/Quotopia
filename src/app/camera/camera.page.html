@@ -1,17 +1,10 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Camera
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Camera</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Camera page"></app-explore-container>
+  <div id="cameraPreview" class="cameraPreview">
+    <ion-button (click)="capture()" expand="block" id="capture">
+      <ion-icon name="camera" slot="icon-only"></ion-icon>
+    </ion-button>
+    <ion-button (click)="flipCamera()" expand="block" id="flip">
+      <ion-icon name="camera-reverse" slot="icon-only"></ion-icon>
+    </ion-button>
+  </div>
 </ion-content>

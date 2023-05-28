@@ -1,0 +1,79 @@
+ion-content {
+    ion-grid {
+      ion-row {
+        ion-col {
+          ion-card {
+            margin: 10px;
+            height: auto;
+            overflow: hidden;
+  
+            img {
+              width: 100%;
+              height: auto;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Small devices (phones)
+  @media (max-width: 576px) {
+    ion-content {
+      ion-grid {
+        ion-row {
+          ion-col {
+            ion-card {
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Medium devices (tablets)
+  @media (min-width: 577px) and (max-width: 991px) {
+    ion-content {
+      ion-grid {
+        ion-row {
+          ion-col {
+            ion-card {
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  // Large devices (desktops)
+  @media (min-width: 992px) {
+    ion-content {
+      ion-grid {
+        ion-row {
+          ion-col {
+            ion-card {
+              height: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .star-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: gray;
+    font-size: 32px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 99;
+  }
+  
+  .star-selected {
+    color: gold;
+  }

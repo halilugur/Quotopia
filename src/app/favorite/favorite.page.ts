@@ -1,3 +1,4 @@
+import { PhotoService, Photo } from './../services/photo.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
 })
 export class FavoritePage {
 
-  constructor() { }
+  constructor(public photoService: PhotoService) { }
+
+  async toggleFavorite(photo: Photo) {
+    await this.photoService.makeFavorite(photo)
+  }
 }
