@@ -34,6 +34,20 @@ We welcome contributions from the community to enhance Quotopia. To contribute, 
 
 Please ensure that your code adheres to our coding guidelines and include relevant tests.
 
+## Website and Mobile Screenshots
+
+### Web Screenshots
+
+|   Home  |  Camera  | Gallery | Favorite |
+|---------|----------|---------|----------|
+| ![Web Screenshot Home](https://github.com/halilugur/Quotopia/blob/master/ss/web_home.png?raw=true) | ![Web Screenshot Camera](https://github.com/halilugur/Quotopia/blob/master/ss/web_camera.png?raw=true) | ![Web Screenshot Gallery](https://github.com/halilugur/Quotopia/blob/master/ss/web_gallery.png?raw=true) | ![Web Screenshot Favorite](https://github.com/halilugur/Quotopia/blob/master/ss/web_favorte.png?raw=true) |
+
+### Mobile Screenshots
+
+|   Home  |  Camera  | Gallery | Favorite |
+|---------|----------|---------|----------|
+| ![Mobile Screenshot Home](https://github.com/halilugur/Quotopia/blob/master/ss/mobile_home.png?raw=true) | ![Mobile Screenshot Camera](https://github.com/halilugur/Quotopia/blob/master/ss/mobile_camera.png?raw=true) | ![Mobile Screenshot Gallery](https://github.com/halilugur/Quotopia/blob/master/ss/mobile_gallery.png?raw=true) | ![Mobile Screenshot Favorite](https://github.com/halilugur/Quotopia/blob/master/ss/mobile_favorite.png?raw=true) |
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
@@ -41,3 +55,4 @@ This project is licensed under the [MIT License](LICENSE).
 ## Contact
 
 If you have any questions or suggestions, feel free to reach out to us at mr.halilugur@gmail.com
+
